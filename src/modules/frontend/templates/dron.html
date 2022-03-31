@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WaterDrone</title>
+    <style>
+        button {
+            width: 10%;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Curent Speed: {{speed}}</h1>
+    <div>
+        <div>
+            <h1>Start</h1>
+            <a href="http://{{ip}}/?query=1100"><button>1100</button></a>
+            <a href="http://{{ip}}/?query=1300"><button>1300</button></a>
+            <a href="http://{{ip}}/?query=1500"><button>1500</button></a>
+            <a href="http://{{ip}}/?query=1700"><button>1700</button></a>
+            <a href="http://{{ip}}/?query=1900"><button>1900</button></a>
+            <a href="http://{{ip}}/?query=2000"><button>2000</button></a>
+        </div>
+        <div>
+            <h1>Stop</h1>
+            <a href="http://{{ip}}/"><button>0</button></a>
+        </div>
+    </div>
+</body>
+</html>   

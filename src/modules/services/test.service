@@ -1,0 +1,12 @@
+[Unit]
+Description=Frontend service for waterDrone
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/opt/waterDrone/src/modules/frontend
+ExecStart=/opt/waterDrone/src/modules/frontend/frontend_run.py 0.0.0.0 8888
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
