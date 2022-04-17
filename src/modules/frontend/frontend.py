@@ -21,7 +21,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/opt/waterDrone/src/modules/frontend
-ExecStart=/opt/waterDrone/src/modules/frontend/frontend_run.py {self.config.ip} {self.config.port}
+ExecStart=/opt/waterDrone/src/modules/frontend/frontend_run.py {self.config.ip} {self.config.port} {self.config.backend_port}
 Restart=always
 
 [Install]
@@ -35,10 +35,9 @@ WantedBy=multi-user.target"""
     def create_link(self):
         try:
             os.unlink(f"{self.config.path_link}/{self.config.service_name}.service")
+            os.symlink(self.path_service, self.path_link)
         except:
             pass
-
-        os.symlink(self.path_service, self.path_link)
 
     def start_service(self):
         # self.logger.info("modules > frontend > start_service")
