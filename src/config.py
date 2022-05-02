@@ -47,3 +47,11 @@ class Frontend_config():
         self.path_link = "/etc/systemd/system"
         self.path_service = "/opt/waterDrone/src/modules/services"
         self.backend_port = "5000"
+
+class Triggers_config():
+    def __init__(self):
+        self.service_name = "dron_triggers"
+        self.path_link = "/etc/systemd/system"
+        self.path_service = "/opt/waterDrone/src/modules/services"
+        self.interval = "1"
+        

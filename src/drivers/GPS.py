@@ -22,7 +22,7 @@ class GPS_driver():
             return coordinates(lat, lon)
 
         return False
-
+    
 if __name__ == "__main__":
     print("Start Check GPS!")
     running = True

@@ -1,23 +1,21 @@
 # from multiprocessing import connection
 from config import dataBaseConfig
-from loguru import logger
 import pymysql.cursors
 
 class dataBase():
-    def __init__(self):
-        config = dataBaseConfig()
+    def __init__(self, config):
+        self.config = config
         
         self.connection = pymysql.connect(
             host=config.ip,
             user=config.user,
-            password=config.password,
-            database=config.dbName,
+            password=self.config.password,
+            database=self.config.dbName,
             cursorclass=pymysql.cursors.DictCursor
         ) 
 
         self.cursor = self.connection.cursor()
 
-    @logger.catch
     def write(self, table, field, data):
         #      INSERT INTO `Dron`.`gps` VALUES ('23423423');
         #      INSERT INTO Product VALUES ('B', 1157, 'PC');
@@ -25,7 +23,6 @@ class dataBase():
         self.cursor.execute(sql)
         self.connection.commit()
 
-    # @logger.catch
     def read(self, table):
         sql = "SELECT * FROM {0}".format(table)
         self.cursor.execute(sql)

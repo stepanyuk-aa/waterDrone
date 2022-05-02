@@ -24,7 +24,8 @@ class UltraSonic_driver():
             pass
         stop = time.time()
 
-        print ("Distance = ",(stop - start) * 17000,"sm")
+        #print ("Distance = ",(stop - start) * 17000,"sm")
+        return (stop - start) * 17000
 
 
 if __name__ == "__main__":
