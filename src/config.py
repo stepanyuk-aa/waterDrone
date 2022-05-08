@@ -34,9 +34,6 @@ class Backend_config():
         self.ip = "192.168.1.101"
         self.port = "5000"
         self.socket = self.ip + ":" + self.port
-        self.service_name = "dron_backend"
-        self.path_link = "/etc/systemd/system"
-        self.path_service = "/opt/waterDrone/src/modules/services"
 
 class Frontend_config():
     def __init__(self):
@@ -45,13 +42,14 @@ class Frontend_config():
         self.socket = self.ip + ":" + self.port
         self.service_name = "dron_frontend"
         self.path_link = "/etc/systemd/system"
-        self.path_service = "/opt/waterDrone/src/modules/services"
+        self.path_service = "/opt/waterDrone/src/services"
+        self.working_directory = "/opt/waterDrone/src/modules/frontend"
         self.backend_port = "5000"
 
 class Triggers_config():
     def __init__(self):
         self.service_name = "dron_triggers"
         self.path_link = "/etc/systemd/system"
-        self.path_service = "/opt/waterDrone/src/modules/services"
+        self.path_service = "/opt/waterDrone/src/services"
         self.interval = "1"
         

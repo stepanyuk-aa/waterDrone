@@ -1,0 +1,11 @@
+[Unit]
+Description=Triggers Timer
+Requires=dron_triggers.service
+
+[Timer]
+Unit=dron_triggers.service
+OnCalendar=*-*-* *:*:00/1
+AccuracySec=1ms
+
+[Install]
+WantedBy=timers.target

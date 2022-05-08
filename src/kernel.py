@@ -12,11 +12,11 @@ class kernel(base):
 		# print("kernel > init")
 		# self.drivers = drivers()
 		self.triggers = triggers(config)
-		self.modules = modules(self.drivers)
+		# self.modules = modules(self.drivers)
 
-		self.modules.frontend.run()
-		self.modules.frontend.start_service()
-		self.modules.backend.run()
+		# self.modules.frontend.run()
+		# self.modules.frontend.start_service()
+		# self.modules.backend.run()
 
 
 kl = kernel()

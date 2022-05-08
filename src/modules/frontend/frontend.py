@@ -1,8 +1,7 @@
 import os
-from base import base
 from config import Frontend_config
 
-class frontend(base):
+class frontend():
     def __init__(self):
         self.config = Frontend_config()
         self.path_service = f"{self.config.path_service}/{self.config.service_name}.service"
@@ -10,7 +9,11 @@ class frontend(base):
 
     def run(self):    
         self.create_service()
-        self.create_link()
+        try:
+            self.create_link()
+        except:
+            pass
+        
         os.system("systemctl daemon-reload")
 
     def create_service(self):
@@ -20,8 +23,8 @@ After=network.target
 
 [Service]
 User=root
-WorkingDirectory=/opt/waterDrone/src/modules/frontend
-ExecStart=/opt/waterDrone/src/modules/frontend/frontend_run.py {self.config.ip} {self.config.port} {self.config.backend_port}
+WorkingDirectory={self.config.working_directory}
+ExecStart={self.config.working_directory}/frontend_run.py {self.config.ip} {self.config.port} {self.config.backend_port}
 Restart=always
 
 [Install]
@@ -45,6 +48,3 @@ WantedBy=multi-user.target"""
 
     def stop_service(self):
         os.system("systemctl stop dron_frontend")
-
-# front = frontend()
-# front.run()
