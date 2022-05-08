@@ -1,0 +1,15 @@
+#
+[Unit]
+Description=Triggers service for waterDrone
+After=network.target
+Wants=triggers.timer
+
+[Service]
+#User=root
+Type=oneshot
+WorkingDirectory=/opt/waterDrone/src/triggers
+ExecStart=python3 /opt/waterDrone/src/triggers/triggers_run.py
+#Restart=always
+
+[Install]
+WantedBy=multi-user.target

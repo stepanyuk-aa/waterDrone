@@ -1,4 +1,6 @@
 #!/usr/bin/python3.9
+import sys
+sys.path.append("/opt/waterDrone/src")
 import config
 from base import dataBase 
 from triggers import triggers

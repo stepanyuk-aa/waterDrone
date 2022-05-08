@@ -12,18 +12,23 @@ class triggers():
         self.path_service = f"{self.config.path_service}/{self.config.service_name}.service"
         self.path_link = f"{self.config.path_link}/{self.config.service_name}.service"
 
-        # if(self.check_service()):
-        #     self.run_service()
-        # else:
-        #     self.create_service()
-        #     self.run_service()
+        #if(self.check_service()):
+        #    self.run_service()
+        #else:
+            #self.create_service()
+        #    self.run_service()
 
         self.GPS = GPS_driver()
         self.Sonar = UltraSonic_driver()
 
     def check_service(self):
         print("CHECK")
-        test = subprocess.check_output(f"systemctl status {self.config.service_name}.service".split()).decode("utf-8")
+        test = ""
+        try:
+            test = subprocess.check_output(f"systemctl status {self.config.service_name}.service".split()).decode("utf-8")
+        except:
+            pass
+        
         if "active (running)" in test:
             return True
         else:
@@ -38,7 +43,7 @@ After=network.target
 [Service]
 User=root
 WorkingDirectory=/opt/waterDrone/src/triggers
-ExecStart=watch -n {config.interval} python3 /opt/waterDrone/src/triggers/triggers_run.py
+ExecStart=watch -n {self.config.interval} python3 /opt/waterDrone/src/triggers/triggers_run.py
 Restart=always
 
 [Install]
