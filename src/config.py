@@ -52,4 +52,8 @@ class Triggers_config():
         self.path_link = "/etc/systemd/system"
         self.path_service = "/opt/waterDrone/src/services"
         self.interval = "1"
+
+class Scripts_config():
+    def __init__(self):
+        self.path = "/opt/waterDrone/src/scripts"
         

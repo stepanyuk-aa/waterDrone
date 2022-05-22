@@ -11,7 +11,7 @@ class kernel():
 		self.database = dataBase(config.dataBaseConfig())
 		self.drivers = drivers()
 		self.triggers = triggers(config)
-		self.modules = modules(self.drivers)
+		self.modules = modules(self.drivers, config)
 
 		# self.modules.frontend.run()
 		# self.modules.frontend.start_service()
