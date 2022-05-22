@@ -1,22 +1,23 @@
 import config
-from base import base
+from base import dataBase
 
 from triggers.triggers import triggers
 from modules.modules import modules
 from drivers.drivers import drivers
 
 
-class kernel(base):
+class kernel():
 	def __init__(self):
-		# self.logger.info("kernel > init")
-		# print("kernel > init")
-		# self.drivers = drivers()
+		self.database = dataBase(config.dataBaseConfig())
+		self.drivers = drivers()
 		self.triggers = triggers(config)
-		# self.modules = modules(self.drivers)
+		self.modules = modules(self.drivers)
 
 		# self.modules.frontend.run()
 		# self.modules.frontend.start_service()
-		# self.modules.backend.run()
+		self.modules.getTriggers.run(self.database, self.modules.backend)
+		self.modules.backend.run()
+
 
 
 kl = kernel()

@@ -11,20 +11,30 @@ class triggers_run():
         self.database = dataBase(config.dataBaseConfig())
 
         self.Sonar_get()
+        self.GPS_get()
 
     def Sonar_get(self):
         data = self.triggers.Sonar.get_dist()
-        print(data)
+        # print(data)
         self.database.write(
             table = "USR", 
             field = "distance", 
             data = data
         )
-        # GPS
-        # Servo
-    
 
-    # self.database
+    def GPS_get(self):
+        try:
+            data = self.triggers.GPS.getPosition().get()
+        except:
+            print("GPS Error")
+            data = False
+
+        if data:
+            self.database.write(
+                table = "GPS", 
+                field = "coordinates", 
+                data = data
+            )
 
 if __name__ == "__main__":
     trigs = triggers_run()

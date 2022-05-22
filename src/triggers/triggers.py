@@ -17,14 +17,14 @@ class triggers():
 
         try:
             if(self.check_service() == False):
+                print(f"Status = {self.check_service() == False}")
                 self.create_service()
                 self.run_service()
 
             self.GPS = GPS_driver()
             self.Sonar = UltraSonic_driver()
-
         except:
-            pass
+            print("INIT ERROR")
 
     def check_service(self):
         print("CHECK")
@@ -34,7 +34,7 @@ class triggers():
         except:
             pass
         
-        if "active (running)" in test:
+        if "Active: active " in test:
             return True
         else:
             return False
@@ -77,7 +77,6 @@ WantedBy=timers.target"""
         file.close()
 
         try:
-            print()
             os.unlink(f"{self.path_link_service}")
             os.unlink(f"{self.path_link_timer}")
             os.symlink(self.path_service, self.path_link_service)

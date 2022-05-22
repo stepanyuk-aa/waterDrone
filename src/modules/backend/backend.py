@@ -1,11 +1,12 @@
 from config import Backend_config
 # from sys import argv
 from flask import Flask, request, render_template
-
+from flask_cors import CORS
 
 class backend():
     def __init__(self):    
         self.app = Flask(__name__)
+        CORS(self.app)
         self.config = Backend_config()
         self.start()
 
@@ -20,6 +21,7 @@ class backend():
  
     def run(self):
         self.app.run(host=self.config.ip, port=self.config.port)
+        
 
 
 # b = backend()
