@@ -10,6 +10,8 @@ class scripts():
         self.get_scripts()
         self.create_script()
         self.delite_script()
+        self.get_script_data()
+
 
     def get_scripts(self):
         @self.backend.app.route('/get/scripts', methods=['GET'])
@@ -40,7 +42,25 @@ class scripts():
 
             return "OK"
 
-    ###########################################################################        
+    def get_script_data(self):
+        @self.backend.app.route('/get/script/data', methods=['POST'])
+        def get_script_data():
+            if request.method == 'POST':
+                data = request.get_json()
+                title = data['title']
+
+                text = self._get_data(title)
+                return json.dumps(text)
+            else: print("is not POST")
+
+            return "OK"
+
+
+    ########################################################################### 
+    # Private methods    
+    ###########################################################################     
+
+
     def _get_files(self):
         files = os.listdir(self.config.path)
         return json.dumps(files)
@@ -49,3 +69,12 @@ class scripts():
         file = open(f"{self.config.path}/{title}.py", "w")
         file.writelines(text)
         file.close()
+
+    def _get_data(self, title):
+        path = self.config
+        file = open(f"{self.config.path}/{title}.py", 'r')
+        data = file.readlines()
+        file.close()
+
+        return data
+    
