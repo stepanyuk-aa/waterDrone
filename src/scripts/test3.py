@@ -1,2 +1,1 @@
-Hello World
-Проверка текста
+print("rerew)

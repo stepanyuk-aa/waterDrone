@@ -4,9 +4,11 @@ import time              # подключение библиотеки для р
 class UltraSonic_driver():
     def __init__(self):
         # self.config = UltraSonic_config
-        self.TRIG = 16
-        self.ECHO = 18
-        GPIO.setmode(GPIO.BOARD)
+        self.TRIG = 23
+        self.ECHO = 24
+
+        GPIO.setmode(GPIO.BCM)
+
         GPIO.setup(self.TRIG, GPIO.OUT, initial=0)
         GPIO.setup(self.ECHO, GPIO.IN)
         
@@ -17,6 +19,7 @@ class UltraSonic_driver():
 
 
         while GPIO.input(self.ECHO) == 0:
+            # print("Wait...")
             pass
         start = time.time()
 
@@ -32,5 +35,5 @@ if __name__ == "__main__":
     print("Start Check distance!")
     sonic = UltraSonic_driver()
     while(True):
-        sonic.get_dist()
+        print(sonic.get_dist())
         time.sleep(1)

@@ -1,4 +1,5 @@
 import os
+import subprocess
 import json
 from flask import request
 
@@ -94,5 +95,14 @@ class scripts():
         return data
 
     def _run_script(self, file):
-        output = os.popen(f"python3 {self.config.path}/{file}").read()
-        return output
+        result  = subprocess.run(['sudo','python3',f"{self.config.path}/{file}"], 
+            stdout=subprocess.PIPE, 
+            stderr=subprocess.PIPE,
+            encoding='utf-8'
+        )
+
+        out_text = "Output:\n" + result.stdout + "\nError:\n" + result.stderr
+        print(out_text)
+        return out_text
+
+        
