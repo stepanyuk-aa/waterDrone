@@ -1,112 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>WaterDrone</title>
-    <style>
-        .button {
-            font-size: 3em;
-            width: 100%;
-            height: 100%;
-        }
-        div {
-            display: flex;
-        }
-        .main {
-            align-items: stretch;
-            justify-content: center;
-            flex-direction: row;
-        }
-        .control {
-            width: 100%;
-            flex-direction: row;
-        }
-        .buttons {
-            width: 70%;
-            align-items: center;
-            flex-direction: row;
-        }
-        .left {
-            width: 30%;
-            height: 100%;
-            justify-content: center;
-        }
-        .center {
-            width: 40%;
-            height: 100%;
-            align-items: stretch;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .right {
-            width: 30%;
-            height: 100%;
-            justify-content: center;
-        }
-        .speed {
-            width: 30%;
-            align-items: stretch;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-    </style>
-    <script>
-        function httGet(url){
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", url, false ); // false for synchronous request
-            xmlHttp.send( null );
-            console.log(xmlHttp.responseText);
-        }
-
-        function to_left(){
-            console.log("Send to_left");
-            httGet("http://{{backend}}/to_left")
-        }
-        function to_direct(){
-            console.log("Send to_left");
-            httGet("http://{{backend}}/to_direct")
-        }
-        function to_stop(){
-            console.log("Send to_left");
-            httGet("http://{{backend}}/to_stop")
-        }
-        function to_right(){
-            console.log("Send to_left");
-            httGet("http://{{backend}}/to_right")
-        }
-        function set_speed(speed){
-            console.log("Set speed");
-            url = "http://{{backend}}/set_speed/" + speed
-            httGet(url)
-        }
-    </script>
-</head>
-<body>
-    <div class="main">
-        <div class="control">
-            <div class="buttons">
-                <div class="left">
-                    <input class="button" onclick="to_left()" type="button" value="⬅">
-                </div>
-                <div class="center">
-                    <input class="button" onclick="to_direct()" type="button" value="⬆">
-                    <input class="button" onclick="to_stop()" type="button" value="🛑">
-                </div>
-                <div class="right">
-                    <input class="button" onclick="to_right()" type="button" value="➡">
-                </div>
-            </div>
-            <div class="speed">
-                <h1>Set Speed</h1>
-                <input class="button" onclick="set_speed(2000)" type="button" value="2000">
-                <input class="button" onclick="set_speed(1800)" type="button" value="1800">
-                <input class="button" onclick="set_speed(1600)" type="button" value="1600">
-                <input class="button" onclick="set_speed(1400)" type="button" value="1400">
-                <input class="button" onclick="set_speed(1200)" type="button" value="1200">
-                <input class="button" onclick="set_speed(0)" type="button" value="0">
-            </div>
-        </div>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Import Vue.js -->
+    <script src="components/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <div class="tabs">
+      <input type="radio" name="inset" value="" id="tab_1" >
+      <label for="tab_1">Панель управления</label>
+      <input type="radio" name="inset" value="" id="tab_2" checked>
+      <label for="tab_2">Панель сценариев</label>
+      
+      <div id="control-panel">
+        <control-panel></control-panel>
+      </div>
+      <div id="scripts-panel">
+        <scripts-panel></scripts-panel>
+      </div>
     </div>
-</body>
-</html>   
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+    <!-- Import Components -->
+    <script src="components/control.js"></script>
+    <script src="components/scripts.js"></script>
+    <script src="components/axios.min.js"></script>
+
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
+  </body>
+</html>

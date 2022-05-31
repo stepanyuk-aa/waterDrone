@@ -13,8 +13,8 @@ class kernel():
 		self.triggers = triggers(config)
 		self.modules = modules(self.drivers, config)
 
-		# self.modules.frontend.run()
-		# self.modules.frontend.start_service()
+		self.modules.frontend.run()
+		self.modules.frontend.start_service()
 		self.modules.getTriggers.run(self.database, self.modules.backend)
 		self.modules.backend.run()
 

@@ -102,7 +102,6 @@ class scripts():
         )
 
         out_text = "Output:\n" + result.stdout + "\nError:\n" + result.stderr
-        print(out_text)
         return out_text
 
         
