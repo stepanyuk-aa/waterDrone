@@ -31,18 +31,18 @@ class Servo_config():
 
 class Backend_config():
     def __init__(self):
-        self.ip = "192.168.1.101"
+        self.ip = "192.168.10.1"
         self.port = "5000"
         self.socket = self.ip + ":" + self.port
 
 class Frontend_config():
     def __init__(self):
-        self.ip = "192.168.1.101"
+        self.ip = "192.168.10.1"
         self.port = "5001"
         self.socket = self.ip + ":" + self.port
         self.service_name = "dron_frontend"
         self.path_link = "/etc/systemd/system"
-        self.path_service = "/opt/waterDrone/src/services"
+        self.path_service = "/opt/waterDrone/src/modules/services"
         self.working_directory = "/opt/waterDrone/src/modules/frontend"
         self.backend_port = "5000"
 
@@ -50,7 +50,7 @@ class Triggers_config():
     def __init__(self):
         self.service_name = "dron_triggers"
         self.path_link = "/etc/systemd/system"
-        self.path_service = "/opt/waterDrone/src/services"
+        self.path_service = "/opt/waterDrone/src/modules/services"
         self.interval = "1"
 
 class Scripts_config():

@@ -10,11 +10,13 @@ class frontend():
         self.backend_soket = f"{self.config.ip}:{self.config.backend_port}"
     def run(self):    
         self.create_service()
+
         try:
             self.create_link()
             self.create_conrol_panel()
             self.create_scripts_panel()
         except:
+            print("Fronted start ERROR")
             pass
         
         os.system("systemctl daemon-reload")
@@ -39,11 +41,11 @@ WantedBy=multi-user.target"""
         file.close()
 
     def create_link(self):
-        try:
+        if os.path.isfile(f"{self.config.path_link}/{self.config.service_name}.service"):
             os.unlink(f"{self.config.path_link}/{self.config.service_name}.service")
-            os.symlink(self.path_service, self.path_link)
-        except:
-            pass
+        
+        os.symlink(self.path_service, self.path_link)
+
     def create_conrol_panel():
         path = "/opt/waterDrone/src/modules/frontend/templates/components/control.js"
         os.remove(path)
